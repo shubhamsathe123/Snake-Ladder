@@ -1,0 +1,1 @@
+console.log('****welcome to snake & ladder game****');
