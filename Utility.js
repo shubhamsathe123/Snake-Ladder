@@ -5,43 +5,68 @@ class Utility
    SNAKE=1;
    LADDER=2;
    NO_PLAY=3;
-   current_position=0;
-
-   //uc1
-    gamePlay = () =>
+   current_position;  
+   dice_count;
+   
+    gamePlay = (current_position) =>
     {
-        let dice_count=0;
-        this.current_position=this.START_POSITION;
-     while(this.current_position<this.END_POSITION)
-     {
-       let dice=Math.floor(Math.random()*6)+1;
-       console.log(`dice | ${dice}`);
-       let check_option=Math.floor(Math.random()*3)+1;
+      if(current_position<this.END_POSITION)
+      {
+        let dice=Math.floor(Math.random()*6)+1;
+        console.log(`dice | ${dice}`);
+        let check_option=Math.floor(Math.random()*3)+1;
        switch(check_option)
          {
            case this.SNAKE:
                 console.log('snake |');
-               if(this.current_position-dice>=this.START_POSITION)
+               if(current_position-dice>=this.START_POSITION)
                {
-                this.current_position=this.current_position-dice;
+                current_position=current_position-dice;
                }
                break;
            case this.LADDER:
                console.log('ladder |');
-               if(this.current_position+dice<=this.END_POSITION)
+               if(current_position+dice<=this.END_POSITION)
                {
-               this.current_position=this.current_position+dice;
+               current_position=current_position+dice;
                } 
               break;
            case this.NO_PLAY:
                console.log('no play |');
-               this.current_position=this.current_position;
+               current_position=current_position;
                break;
          }
-         dice_count++;
+         this.dice_count++;
      }
-       console.log(`current position is ${this.current_position}`);
-       console.log("dice count is:"+dice_count );
+       console.log(`current position is ${current_position}`);
+       return current_position;
     }
+
+    twoPlayers = () =>
+    {
+        let Player1Position = this.START_POSITION
+        let Player2Position = this.START_POSITION
+        this.dice_Count = this.START_POSITION
+       while( Player1Position < this.END_POSITION && Player2Position <  this.END_POSITION )
+        {
+           console.log('Player 1:-   ');
+           Player1Position = this.gamePlay(Player1Position);
+           console.log("----------------------------------------------------------------");
+           if(Player1Position == this.END_POSITION)
+           {
+             console.log("Player 1 Won The Game ");
+               break;
+           }
+
+           console.log('Player 2:-   ');
+           Player2Position = this.gamePlay(Player2Position);
+           console.log("----------------------------------------------------------------");
+           if(Player2Position == this.END_POSITION)
+           {
+            console.log("Player 2 Won The Game ");
+              break;
+           }            
+       }
+    }   
 }
 module.exports = new Utility();
