@@ -6,9 +6,11 @@ class Utility
    LADDER=2;
    NO_PLAY=3;
    current_position=0;
+
    //uc1
     gamePlay = () =>
     {
+        let dice_count=0;
         this.current_position=this.START_POSITION;
      while(this.current_position<this.END_POSITION)
      {
@@ -36,8 +38,10 @@ class Utility
                this.current_position=this.current_position;
                break;
          }
+         dice_count++;
      }
        console.log(`current position is ${this.current_position}`);
+       console.log("dice count is:"+dice_count );
     }
 }
 module.exports = new Utility();
