@@ -9,11 +9,14 @@ class Utility
    //uc1
     gamePlay = () =>
     {
+        this.current_position=this.START_POSITION;
+     while(this.current_position<this.END_POSITION)
+     {
        let dice=Math.floor(Math.random()*6)+1;
-       console.log(`number getting after rolling the dice is ${dice}`);
+       console.log(`check option | ${dice}`);
        let check_option=Math.floor(Math.random()*3)+1;
        switch(check_option)
-       {
+         {
            case this.SNAKE:
                 console.log('snake');
                if(this.current_position-dice<=100)
@@ -32,7 +35,8 @@ class Utility
                console.log('no play');
                this.current_position=this.current_position;
                break;
-       }
+         }
+     }
        console.log(`current position is ${this.current_position}`);
     }
 }
